@@ -1,6 +1,6 @@
-<p align="center"><img src="https://analytics.cool.bio/slogo.svg" alt="Cool.bio Analytics logo"></p>
+<p align="center"><img src="https://analytics.cool.bio/slogo.svg" alt="Ntrace Analytics logo"></p>
 
-<h1 align="center">Cool.bio Analytics</h1>
+<h1 align="center">Ntrace Analytics</h1>
 
 <p align="center">
 An open-source analytics service that does not use cookies
@@ -21,7 +21,7 @@ An open-source analytics service that does not use cookies
 
 </p>
 
-Cool.bio analytics is an open-source analytics service. It does not use Cookies to track your users. Setup in 2 mins with our lightweight script which keeps your site speed fast. Track all of your website traffic from any device.
+Ntrace analytics is an open-source analytics service. It does not use Cookies to track your users. Setup in 2 mins with our lightweight script which keeps your site speed fast. Track all of your website traffic from any device.
 
 ## 🚀 Demo
 See the live demo [here](https://analytics.cool.bio/share/1354cb95-33a4-4d3d-8dfc-eb2715d154fc)
