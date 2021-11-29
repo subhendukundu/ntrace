@@ -294,7 +294,7 @@ export default function Landing({ products }) {
             fontSize={{ md: "4xl", xs: "xl" }}
             fontWeight="700"
           >
-            We too. We don't have cookies and fully compliant with GDPR
+            We too. We don&quot;t have cookies and fully compliant with GDPR
           </x.h2>
           <x.p color="gray" pb={{ md: 24, xs: 16 }}>
             All the site measurement is carried out absolutely anonymously.
