@@ -138,12 +138,20 @@ function About({ heading1, heading2 }) {
 export default About;
 
 export async function getStaticProps(context) {
-  return {
-    props: {
-      heading1:
-        "Ntrace Analytics is an open-source project dedicated to making web analytics more privacy-friendly. Our mission is to reduce corporate surveillance by providing an alternative web analytics tool which doesn’t come from the AdTech world.",
-      heading2:
-        "We are trusted by 100+ subscribers. We are completely independent, self-funded and bootstrapped.",
-    },
-  };
+  try {
+    return {
+      props: {
+        heading1:
+          "Ntrace Analytics is an open-source project dedicated to making web analytics more privacy-friendly. Our mission is to reduce corporate surveillance by providing an alternative web analytics tool which doesn’t come from the AdTech world.",
+        heading2:
+          "We are trusted by 100+ subscribers. We are completely independent, self-funded and bootstrapped.",
+      },
+    };
+  } catch(e) {
+    return {
+      props: {
+
+      }
+    }
+  }
 }
