@@ -1,11 +1,15 @@
 module.exports = {
   async redirects() {
-    return [
-      {
-        source: "/docs",
-        destination: "/docs/getting-started",
-        permanent: true,
-      },
-    ];
+    try {
+        return [
+          {
+            source: "/docs",
+            destination: "/docs/getting-started",
+            permanent: true,
+          },
+        ];
+    } catch (e) {
+        return [];
+    }
   },
 };
