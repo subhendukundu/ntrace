@@ -73,6 +73,7 @@ export default function Login(props) {
   const [mode] = useColorMode(false);
   const router = useRouter();
   const { isLoading, isAuthenticated } = useNhostAuth();
+  console.log("[isLoading, isAuthenticated]", isLoading, isAuthenticated);
 
   function onGoogleLogin() {
     nhost.auth.signIn({
