@@ -17,12 +17,9 @@ async function postSession(postCall) {
     return sessionId;
 }
 
-export async function onRequestPost(request) {
+export async function onRequestPost({ request }) {
   // Contents of context object
   try {
-    if (request.method !== "POST") {
-      return new Response("Method not supported!", { status: 500 });
-    }
     const userAgent = request.headers.get("User-Agent") || "";
     if (userAgent.includes("bot")) {
       return new Response("Block User Agent containing bot!", { status: 500 });
@@ -33,7 +30,7 @@ export async function onRequestPost(request) {
 
     const headers = Object.fromEntries(request.headers);
     const origin = request.headers.get("Origin");
-    const url = new URL(origin);
+    const url = origin ? new URL(origin) : {};
     const {
       latitude,
       longitude,
@@ -84,7 +81,7 @@ export async function onRequestPost(request) {
       },
     };
 
-    const postCall = await fetch(GRAPHQL_API, {
+    /* const postCall = await fetch(GRAPHQL_API, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -95,14 +92,14 @@ export async function onRequestPost(request) {
 
     const returningSessionId = await postSession(postCall);
 
-    console.log("[returningSessionId]", returningSessionId);
+    console.log("[returningSessionId]", returningSessionId); */
 
     return new Response(
       JSON.stringify({
-        sessionId: returningSessionId,
+        sessionId: data,
       })
     );
   } catch (err) {
-    res = new Response("Oops!", { status: 500 });
+    return new Response(JSON.stringify(err), { status: 500 });
   }
 }
