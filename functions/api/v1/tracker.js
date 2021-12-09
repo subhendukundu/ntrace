@@ -68,8 +68,7 @@ export async function onRequestPost({ request }) {
       region_code: regionCode,
       postal_code: postalCode,
       referrer,
-      pathname,
-      session_id: sessionId,
+      pathname
     };
 
     console.log("[data]", data);
@@ -81,7 +80,7 @@ export async function onRequestPost({ request }) {
       },
     };
 
-    /* const postCall = await fetch(GRAPHQL_API, {
+    const postCall = await fetch(GRAPHQL_API, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +91,7 @@ export async function onRequestPost({ request }) {
 
     const returningSessionId = await postSession(postCall);
 
-    console.log("[returningSessionId]", returningSessionId); */
+    console.log("[returningSessionId]", returningSessionId);
 
     return new Response(
       JSON.stringify({
