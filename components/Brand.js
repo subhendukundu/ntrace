@@ -61,7 +61,7 @@ function Brand({ showRow }) {
       <Link href="/" passHref>
         <LinkComponent>
           <BrandLogo src="/slogo.svg" alt="ntrace logos" />
-          <Product showRow={showRow}>Analytics</Product>
+          <Product showRow={showRow}>Ntrace</Product>
         </LinkComponent>
       </Link>
     </NavbarMiddle>

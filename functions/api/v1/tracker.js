@@ -1,4 +1,22 @@
 import DeviceDetector from "device-detector-js";
+const deviceDetector = new DeviceDetector();
+
+const query = `
+    mutation set_track($object: TrackInput!) {
+        sessionId: track_analytics(object: $object)
+    }
+`;
+
+async function postSession(postCall) {
+    const responseData = await postCall.json();
+    console.log("[responseData]", responseData);
+
+    const {
+        data: { sessionId },
+    } = responseData;
+    return sessionId;
+}
+
 export async function onRequest(context) {
   // Contents of context object
   try {

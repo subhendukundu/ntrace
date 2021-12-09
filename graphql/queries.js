@@ -234,7 +234,7 @@ export const GET_SESSIONS_COUNT_WITH_GROUP = gql`
                 _daterange: $dateRange
             }
         ) {
-            cnt
+            cnt: count
             col
         }
     }
