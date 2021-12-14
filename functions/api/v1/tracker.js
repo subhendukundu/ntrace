@@ -99,6 +99,6 @@ export async function onRequestPost({ request }) {
       })
     );
   } catch (err) {
-    return new Response(JSON.stringify(err), { status: 500 });
+    return new Response(e.message, { status: 400 });
   }
 }
