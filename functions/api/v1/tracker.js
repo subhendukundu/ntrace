@@ -99,6 +99,6 @@ export async function onRequestPost({ request }) {
       })
     );
   } catch (err) {
-    return new Response(e.message, { status: 400 });
+    return new Response(err.message, { status: 400 });
   }
 }

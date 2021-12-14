@@ -108,6 +108,6 @@ export async function onRequestPost({ request }) {
       }
     } catch (e) {
       console.log("[error]", e.message, e.toString());
-      return await showError("Something went wrong!");
+      return await showError(e);
     }
 };
