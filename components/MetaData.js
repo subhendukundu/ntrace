@@ -42,7 +42,7 @@ function MetaData({ title, noTracking }) {
           async="true"
           defer="true"
           src="https://ntrace.io/tracking.js"
-          data-project-id="d98e01a4-f1b9-41b6-8d4b-88c23e43a35c"
+          data-project-id="9581b0a0-e5aa-48d0-8f79-98480f3e45ee"
         ></script>
       )}
       <script>
