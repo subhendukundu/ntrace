@@ -80,7 +80,7 @@ export async function onRequestPost({ request }) {
       },
     };
 
-    const postCall = await fetch(GRAPHQL_API, {
+    const postCall = await fetch(NEXT_PUBLIC_NHOST_GRAPHQL_API, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
