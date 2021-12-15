@@ -80,7 +80,7 @@ export async function onRequestPost({ request, env }) {
       },
     };
 
-    const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+    /* const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -91,11 +91,11 @@ export async function onRequestPost({ request, env }) {
 
     const returningSessionId = await postSession(postCall);
 
-    console.log("[returningSessionId]", returningSessionId);
+    console.log("[returningSessionId]", returningSessionId); */
 
     return new Response(
       JSON.stringify({
-        sessionId: data,
+        body,
       })
     );
   } catch (err) {
