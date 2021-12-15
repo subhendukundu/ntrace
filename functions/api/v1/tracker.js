@@ -17,7 +17,7 @@ async function postSession(postCall) {
     return sessionId;
 }
 
-export async function onRequestPost({ request }) {
+export async function onRequestPost({ request, env }) {
   // Contents of context object
   try {
     const userAgent = request.headers.get("User-Agent") || "";

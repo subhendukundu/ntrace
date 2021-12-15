@@ -35,7 +35,7 @@ async function showError(error) {
     return new Response(error.message, { status: 400 });
 }
 
-export async function onRequestPost({ request }) {
+export async function onRequestPost({ request, env }) {
     const webhookSecret = request.headers.get("webhook-secret");
     if (webhookSecret !== env.WORKER_HASURA_WEBHOOK_SECRET) {
       return new Response('Unauthorized!', { status: 400 });
