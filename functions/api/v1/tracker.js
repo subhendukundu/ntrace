@@ -7,16 +7,6 @@ const query = `
     }
 `;
 
-async function postSession(postCall) {
-    const responseData = await postCall.json();
-    console.log("[responseData]", responseData);
-
-    const {
-        data: { sessionId },
-    } = responseData;
-    return sessionId;
-}
-
 export async function onRequestPost({ request, env }) {
   // Contents of context object
   try {
@@ -80,7 +70,7 @@ export async function onRequestPost({ request, env }) {
       },
     };
 
-    /* const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+    const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -89,13 +79,14 @@ export async function onRequestPost({ request, env }) {
       body: JSON.stringify(body),
     });
 
-    const returningSessionId = await postSession(postCall);
-
-    console.log("[returningSessionId]", returningSessionId); */
+    const responseData = await postCall.json();
+    console.log("[responseData]", responseData);
 
     return new Response(
       JSON.stringify({
-        body,
+        body: responseData,
+        api: env.NEXT_PUBLIC_NHOST_GRAPHQL_API,
+        secret: env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET
       })
     );
   } catch (err) {
