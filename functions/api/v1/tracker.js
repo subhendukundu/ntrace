@@ -70,7 +70,7 @@ export async function onRequestPost({ request, env }) {
       },
     };
 
-    const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+    const postCall = await fetch(`${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",

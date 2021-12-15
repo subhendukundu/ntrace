@@ -49,7 +49,7 @@ export async function onRequestPost({ request, env }) {
 
     try {
       if (object.project_id) {
-        const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+        const postCall = await fetch(`${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`, {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -87,7 +87,7 @@ export async function onRequestPost({ request, env }) {
             object: sessionId ? object : { ...rest },
           },
         };
-        const sessionSubmitRes = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+        const sessionSubmitRes = await fetch(`${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`, {
           method: "post",
           headers: {
             "Content-Type": "application/json",
