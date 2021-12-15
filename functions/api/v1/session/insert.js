@@ -37,7 +37,7 @@ async function showError(error) {
 
 export async function onRequestPost({ request }) {
     const webhookSecret = request.headers.get("webhook-secret");
-    if (webhookSecret !== process.env.WORKER_HASURA_WEBHOOK_SECRET) {
+    if (webhookSecret !== env.WORKER_HASURA_WEBHOOK_SECRET) {
       return new Response('Unauthorized!', { status: 400 });
     }
 
@@ -49,12 +49,12 @@ export async function onRequestPost({ request }) {
 
     try {
       if (object.project_id) {
-        const postCall = await fetch(process.env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+        const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
           method: "post",
           headers: {
             "Content-Type": "application/json",
             "x-hasura-admin-secret":
-              process.env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+              env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
           },
           body: JSON.stringify({
             query,
@@ -87,12 +87,12 @@ export async function onRequestPost({ request }) {
             object: sessionId ? object : { ...rest },
           },
         };
-        const sessionSubmitRes = await fetch(process.env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+        const sessionSubmitRes = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
           method: "post",
           headers: {
             "Content-Type": "application/json",
             "x-hasura-admin-secret":
-              process.env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+              env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
           },
           body: JSON.stringify(sessionData),
         });

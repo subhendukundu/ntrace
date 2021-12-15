@@ -80,11 +80,11 @@ export async function onRequestPost({ request }) {
       },
     };
 
-    const postCall = await fetch(NEXT_PUBLIC_NHOST_GRAPHQL_API, {
+    const postCall = await fetch(env.NEXT_PUBLIC_NHOST_GRAPHQL_API, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        "x-hasura-admin-secret": WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+        "x-hasura-admin-secret": env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
       },
       body: JSON.stringify(body),
     });
