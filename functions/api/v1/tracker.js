@@ -58,7 +58,7 @@ export async function onRequestPost({ request, env }) {
       region_code: regionCode,
       postal_code: postalCode,
       referrer,
-      pathname
+      pathname,
     };
 
     console.log("[data]", data);
@@ -70,23 +70,24 @@ export async function onRequestPost({ request, env }) {
       },
     };
 
-    const postCall = await fetch(`${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        "x-hasura-admin-secret": env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
-      },
-      body: JSON.stringify(body),
-    });
+    const postCall = await fetch(
+      `${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "x-hasura-admin-secret": env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
     const responseData = await postCall.json();
     console.log("[responseData]", responseData);
 
     return new Response(
       JSON.stringify({
-        body: responseData,
-        api: env.NEXT_PUBLIC_NHOST_GRAPHQL_API,
-        secret: env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET
+        sessionId: responseData?.data?.sessionId,
       })
     );
   } catch (err) {
