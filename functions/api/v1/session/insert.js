@@ -32,7 +32,7 @@ async function postSessionCall(postCall) {
 }
 
 async function showError(error) {
-    return new Response(error.message, { status: 400 });
+    return new Response(error, { status: 400 });
 }
 
 export async function onRequestPost({ request, env }) {
@@ -108,6 +108,6 @@ export async function onRequestPost({ request, env }) {
       }
     } catch (e) {
       console.log("[error]", e.message, e.toString());
-      return await showError(e);
+      return await showError(e.message);
     }
 };
