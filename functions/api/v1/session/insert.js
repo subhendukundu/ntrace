@@ -114,11 +114,11 @@ export async function onRequestPost({ request, env }) {
       );
       const returningSessionId = await postSessionCall(sessionSubmitRes);
       console.log("[sessionId]", returningSessionId);
-      return {
-        data: {
-          session_id: returningSessionId,
-        },
-      };
+      return new Response(
+        JSON.stringify({
+            session_id: returningSessionId,
+        })
+      );
     } else {
       return await showError("Unrecognised request!");
     }
