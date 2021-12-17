@@ -18,7 +18,7 @@ const postSession = `
 const postPageview = `
     mutation postSession($object: pageview_insert_input!) {
         session: insert_pageview_one(object: $object) {
-        id
+            id
         }
     }
 `;
@@ -86,7 +86,7 @@ export async function onRequestPost({ request, env }) {
         return await showError("Unrecognised request!");
       }
       const {
-        session_id: sessionId,
+        sessionId,
         pathname,
         protocol,
         referrer,
