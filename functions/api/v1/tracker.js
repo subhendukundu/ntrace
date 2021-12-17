@@ -36,6 +36,7 @@ export async function onRequestPost({ request, env }) {
     const data = {
       ip: headers["x-real-ip"] || headers["cf-connecting-ip"],
       project_id: projectId,
+      session_id: sessionId,
       client_name: device?.client?.name,
       client_type: device?.client?.type,
       client_version: device?.client?.version,

@@ -86,7 +86,7 @@ export async function onRequestPost({ request, env }) {
         return await showError("Unrecognised request!");
       }
       const {
-        sessionId,
+        session_id: sessionId,
         pathname,
         protocol,
         referrer,
