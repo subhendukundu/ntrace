@@ -18,7 +18,18 @@ const postSession = `
 const postPageview = `
     mutation postSession($object: pageview_insert_input!) {
         session: insert_pageview_one(object: $object) {
-            id
+            sessionId: id
+        }
+    }
+`;
+
+const checkTrack = `
+    query check_track($id: uuid!) {
+        track_analytics(id: $id) {
+            output {
+                session_id
+            }
+            errors
         }
     }
 `;
@@ -40,7 +51,8 @@ async function showError(error) {
 
 export async function onRequestPost({ request, env }) {
   const webhookSecret = request.headers.get("webhook-secret");
-  if (webhookSecret !== env.WORKER_HASURA_WEBHOOK_SECRET) {
+  const { WORKER_HASURA_WEBHOOK_SECRET, NEXT_PUBLIC_NHOST_GRAPHQL_API, WORKER_HASURA_GRAPHQL_ADMIN_SECRET } = env;
+  if (webhookSecret !== WORKER_HASURA_WEBHOOK_SECRET) {
     return new Response("Unauthorized!", { status: 400 });
   }
 
@@ -53,12 +65,12 @@ export async function onRequestPost({ request, env }) {
   try {
     if (object.project_id) {
       const postCall = await fetch(
-        `${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
+        `${NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
         {
           method: "post",
           headers: {
             "Content-Type": "application/json",
-            "x-hasura-admin-secret": env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+            "x-hasura-admin-secret": WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
           },
           body: JSON.stringify({
             query,
@@ -86,12 +98,34 @@ export async function onRequestPost({ request, env }) {
         return await showError("Unrecognised request!");
       }
       const {
-        session_id: sessionId,
+        session_id: analyticSessionId,
         pathname,
         protocol,
         referrer,
         ...rest
       } = object;
+      let sessionId = null;
+      if (analyticSessionId) {
+        const postSessionData = await fetch(
+          `${NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
+          {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              "x-hasura-admin-secret": WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+            },
+            body: JSON.stringify({
+              query: checkTrack,
+              variables: {
+                id: analyticSessionId,
+              },
+            }),
+          }
+        );
+        const postSessionDataResponse = await postSessionData.json();
+        sessionId = postSessionDataResponse.data?.track_analytics?.output?.session_id
+      }
+
       const sessionData = {
         query: sessionId ? postPageview : postSession,
         variables: {
@@ -102,12 +136,12 @@ export async function onRequestPost({ request, env }) {
       };
       console.log("[sessionData]", sessionData);
       const sessionSubmitRes = await fetch(
-        `${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
+        `${NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
         {
           method: "post",
           headers: {
             "Content-Type": "application/json",
-            "x-hasura-admin-secret": env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+            "x-hasura-admin-secret": WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
           },
           body: JSON.stringify(sessionData),
         }
@@ -116,7 +150,7 @@ export async function onRequestPost({ request, env }) {
       console.log("[sessionId]", returningSessionId);
       return new Response(
         JSON.stringify({
-            session_id: returningSessionId,
+          session_id: returningSessionId,
         })
       );
     } else {
