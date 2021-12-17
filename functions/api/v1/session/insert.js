@@ -9,13 +9,16 @@ const query = `
 
 const postSession = `
     mutation postSession($object: session_insert_input!) {
-        session: insert_session_one(
-            object: $object,
-            on_conflict: {
-                constraint: session_pkey
-                update_columns: [updated_at]
-            }) {
+        session: insert_session_one(object: $object) {
             sessionId: session_id
+        }
+    }
+`;
+
+const postPageview = `
+    mutation postSession($object: pageview_insert_input!) {
+        session: insert_pageview_one(object: $object) {
+        id
         }
     }
 `;
@@ -32,29 +35,30 @@ async function postSessionCall(postCall) {
 }
 
 async function showError(error) {
-    return new Response(error, { status: 400 });
+  return new Response(error, { status: 400 });
 }
 
 export async function onRequestPost({ request, env }) {
-    const webhookSecret = request.headers.get("webhook-secret");
-    if (webhookSecret !== env.WORKER_HASURA_WEBHOOK_SECRET) {
-      return new Response('Unauthorized!', { status: 400 });
-    }
+  const webhookSecret = request.headers.get("webhook-secret");
+  if (webhookSecret !== env.WORKER_HASURA_WEBHOOK_SECRET) {
+    return new Response("Unauthorized!", { status: 400 });
+  }
 
-    const body = await request.json();
+  const body = await request.json();
 
-    const { object } = body.input;
+  const { object } = body.input;
 
-    console.log("[object]", object);
+  console.log("[object]", object);
 
-    try {
-      if (object.project_id) {
-        const postCall = await fetch(`${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`, {
+  try {
+    if (object.project_id) {
+      const postCall = await fetch(
+        `${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
+        {
           method: "post",
           headers: {
             "Content-Type": "application/json",
-            "x-hasura-admin-secret":
-              env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+            "x-hasura-admin-secret": env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
           },
           body: JSON.stringify({
             query,
@@ -62,52 +66,64 @@ export async function onRequestPost({ request, env }) {
               projectId: object.project_id,
             },
           }),
-        });
+        }
+      );
 
-        const response = await postCall.json();
-        console.log("[response]", response);
-        if (!response.data.project_by_pk) {
-          return await showError("Unrecognised request!");
-        }
-        const requestOrigin = object?.origin
-          ?.replace(/^(?:www\.)?/i, "")
-          ?.split("/")[0];
-        console.log(
-          "[requestOrigin]",
-          requestOrigin,
-          response.data.project_by_pk?.domain
-        );
-        if (requestOrigin !== response.data.project_by_pk?.domain) {
-          return await showError("Unrecognised request!");
-        }
-        const { session_id: sessionId, ...rest } = object;
-        const sessionData = {
-          query: postSession,
-          variables: {
-            object: sessionId ? object : { ...rest },
-          },
-        };
-        const sessionSubmitRes = await fetch(`${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`, {
+      const response = await postCall.json();
+      console.log("[response]", response);
+      if (!response.data.project_by_pk) {
+        return await showError("Unrecognised request!");
+      }
+      const requestOrigin = object?.origin
+        ?.replace(/^(?:www\.)?/i, "")
+        ?.split("/")[0];
+      console.log(
+        "[requestOrigin]",
+        requestOrigin,
+        response.data.project_by_pk?.domain
+      );
+      if (requestOrigin !== response.data.project_by_pk?.domain) {
+        return await showError("Unrecognised request!");
+      }
+      const {
+        session_id: sessionId,
+        pathname,
+        protocol,
+        referrer,
+        ...rest
+      } = object;
+      const sessionData = {
+        query: sessionId ? postPageview : postSession,
+        variables: {
+          object: sessionId
+            ? { session_id: sessionId, referrer: referrer, url: pathname }
+            : { ...rest },
+        },
+      };
+      console.log("[sessionData]", sessionData);
+      const sessionSubmitRes = await fetch(
+        `${env.NEXT_PUBLIC_NHOST_GRAPHQL_API}/v1/graphql`,
+        {
           method: "post",
           headers: {
             "Content-Type": "application/json",
-            "x-hasura-admin-secret":
-              env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
+            "x-hasura-admin-secret": env.WORKER_HASURA_GRAPHQL_ADMIN_SECRET,
           },
           body: JSON.stringify(sessionData),
-        });
-        const returningSessionId = await postSessionCall(sessionSubmitRes);
-        console.log("[sessionId]", returningSessionId);
-        return {
-          data: {
-            session_id: returningSessionId,
-          },
-        };
-      } else {
-        return await showError("Unrecognised request!");
-      }
-    } catch (e) {
-      console.log("[error]", e.message, e.toString());
-      return await showError(e.message);
+        }
+      );
+      const returningSessionId = await postSessionCall(sessionSubmitRes);
+      console.log("[sessionId]", returningSessionId);
+      return {
+        data: {
+          session_id: returningSessionId,
+        },
+      };
+    } else {
+      return await showError("Unrecognised request!");
     }
-};
+  } catch (e) {
+    console.log("[error]", e.message);
+    return await showError(e.message);
+  }
+}
