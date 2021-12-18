@@ -127,7 +127,7 @@ function SettingsDetails({ projectId }) {
           />
         )}
       </x.div>
-      <x.div py={8} animation="fadeInUp" animationDelay="250ms">
+      {/* <x.div py={8} animation="fadeInUp" animationDelay="250ms">
         <x.h2
           color="silver"
           mt={4}
@@ -158,7 +158,7 @@ function SettingsDetails({ projectId }) {
             </x.a>
           </Link>
         </x.div>
-      </x.div>
+      </x.div> */}
       <x.div py={8} animation="fadeInUp" animationDelay="500ms">
         <x.h2
           color="silver"

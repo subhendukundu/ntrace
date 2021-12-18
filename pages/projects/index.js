@@ -34,7 +34,7 @@ function Projects(props) {
 
   return (
     <PrivateRoute>
-      <MetaData title="Projects | Cool Analytics" />
+      <MetaData title="Projects | Ntrace Analytics" />
       <Navbar />
       <AppWrapper>
         <x.h1 fontSize={{ md: "4xl", xs: "2xl" }} fontWeight="500" color="gray">

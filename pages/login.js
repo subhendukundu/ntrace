@@ -98,7 +98,7 @@ export default function Login(props) {
 
   return (
     <>
-      <MetaData title="Login | Cool Analytics" />
+      <MetaData title="Login | Ntrace Analytics" />
       <LoginContainer>
         <LoginWrapper>
           <BrandWrapper>

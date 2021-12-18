@@ -8,7 +8,7 @@ export default function NotFound() {
   const upMd = useUp("md");
   return (
     <>
-      <MetaData title="Not Found | Cool Analytics" />
+      <MetaData title="Not Found | Ntrace Analytics" />
       <x.div
         display="flex"
         justifyContent="center"

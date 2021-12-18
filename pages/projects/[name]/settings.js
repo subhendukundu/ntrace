@@ -18,7 +18,7 @@ function Details() {
   return (
     <PrivateRoute>
       <Navbar />
-      <MetaData title="Details | Cool Analytics" />
+      <MetaData title="Details | Ntrace Analytics" />
       <x.div
         ml={{ md: "9rem", xs: 4 }}
         mr={{ md: "3rem", xs: 4 }}

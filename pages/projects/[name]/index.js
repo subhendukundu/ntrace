@@ -234,7 +234,7 @@ function ListPage() {
   return (
       <PrivateRoute>
         <Navbar />
-        <MetaData title="Dashboard | Cool Analytics" noTracking />
+        <MetaData title="Dashboard | Ntrace Analytics" noTracking />
         <AppWrapper>
           <HomeLeft>
             <Search />

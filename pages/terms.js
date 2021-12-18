@@ -22,7 +22,7 @@ const AppWrapper = styled.div`
 function Terms(props) {
   return (
     <>
-      <MetaData title="Terms | Cool Analytics" />
+      <MetaData title="Terms | Ntrace Analytics" />
       <Navbar />
       <AppWrapper>
         <x.div>Coming soon!</x.div>

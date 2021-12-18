@@ -13,13 +13,6 @@ export const GET_PROJECT_DETAILS_BY_ID_FOR_SETTINGS = gql`
     project: project_by_pk(project_id: $projectId) {
       domain
       timezone
-      subscriptions {
-        price {
-          product {
-            name
-          }
-        }
-      }
     }
   }
 `;
