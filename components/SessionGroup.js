@@ -19,6 +19,7 @@ function SessionGroup({ projectId, query, columns, shareId, view }) {
     error,
     data = {},
   } = useQuery(query, {
+    skip: !projectId,
     variables: {
       projectId,
       dateRange: `[${startDate}, ${endDate}]`,

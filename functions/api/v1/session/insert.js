@@ -131,7 +131,7 @@ export async function onRequestPost({ request, env }) {
         variables: {
           object: sessionId
             ? { session_id: sessionId, referrer: referrer, url: pathname }
-            : { ...rest },
+            : { ...rest, referrer },
         },
       };
       console.log("[sessionData]", sessionData);

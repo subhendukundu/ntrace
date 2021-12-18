@@ -58,6 +58,7 @@ function Timeseries({ data: defaultData, projectId, shareId }) {
     error,
     data = {},
   } = useQuery(GET_SESSIONS_COUNT_FOR_TIMESERIES, {
+    skip: !projectId,
     variables: {
       projectId: projectId,
       at: {

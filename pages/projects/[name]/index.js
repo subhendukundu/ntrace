@@ -20,6 +20,7 @@ import {
   GET_PROJECTS_DETAILS,
   GET_SESSIONS_COUNT_WITH_COUNTRY_NAME,
   GET_SESSIONS_COUNT_WITH_GROUP,
+  GET_SESSIONS_COUNT_WITH_PAGE_GROUP,
 } from "../../../graphql/queries";
 
 import { selectedCountry, showingDateFor } from "../../../atoms";
@@ -204,6 +205,7 @@ function ListPage() {
     error,
     data = {},
   } = useQuery(GET_PROJECTS_DETAILS, {
+    skip: !name,
     variables: {
       projectId: name,
       at: {
@@ -214,6 +216,8 @@ function ListPage() {
       },
     },
   });
+
+  console.log('[data]', data)
 
   const { project, sessions, users } = data;
 
@@ -256,7 +260,7 @@ function ListPage() {
             />
             <SessionGroup
               projectId={name}
-              query={GET_SESSIONS_COUNT_WITH_GROUP}
+              query={GET_SESSIONS_COUNT_WITH_PAGE_GROUP}
               columns={pagesColumns}
               view="pathname"
             />
