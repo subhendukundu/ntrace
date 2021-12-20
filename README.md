@@ -1,5 +1,4 @@
-<p align="center"><img src="https://analytics.
-  .bio/slogo.svg" alt="Ntrace Analytics logo"></p>
+<p align="center"><img src="https://ntrace.io/slogo.svg" alt="Ntrace Analytics logo"></p>
 
 <h1 align="center">Ntrace Analytics</h1>
 
