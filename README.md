@@ -1,4 +1,5 @@
-<p align="center"><img src="https://analytics.cool.bio/slogo.svg" alt="Ntrace Analytics logo"></p>
+<p align="center"><img src="https://analytics.
+  .bio/slogo.svg" alt="Ntrace Analytics logo"></p>
 
 <h1 align="center">Ntrace Analytics</h1>
 
@@ -7,17 +8,13 @@ An open-source analytics service that does not use cookies
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/repo-size/subhendukundu/cool-bio-analytics?color=%23DA631D&label=Repo%20Size" alt="Repo Size">
+<img src="https://img.shields.io/github/repo-size/subhendukundu/ntrace?color=%23DA631D&label=Repo%20Size" alt="Repo Size">
 
-<img src="https://img.shields.io/github/issues/subhendukundu/cool-bio-analytics?color=%23DA631D&label=Issues" alt="Issues">
+<img src="https://img.shields.io/github/issues/subhendukundu/ntrace?color=%23DA631D&label=Issues" alt="Issues">
 
-<img src="https://img.shields.io/github/issues-pr/subhendukundu/cool-bio-analytics?color=%23DA631D&label=Pull%20Requests" alt="Pull Requests">
+<img src="https://img.shields.io/github/issues-pr/subhendukundu/ntrace?color=%23DA631D&label=Pull%20Requests" alt="Pull Requests">
 
-<img src="https://img.shields.io/github/last-commit/subhendukundu/cool-bio-analytics?color=%23DA631D&label=Last%20Commit" alt="Last Commit">
-
-<a href="https://twitter.com/thecoolbio">
-<img src="https://img.shields.io/twitter/follow/thecoolbio?color=%23DA631D&style=social" alt="Twitter">
-</a>
+<img src="https://img.shields.io/github/last-commit/subhendukundu/ntrace?color=%23DA631D&label=Last%20Commit" alt="Last Commit">
 
 </p>
 
