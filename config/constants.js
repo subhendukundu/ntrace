@@ -203,7 +203,7 @@ export const footerData = [
             {
                 label: "Roadmap",
                 key: "roadmap",
-                href: "https://github.com/subhendukundu/cool-bio-analytics/projects/1",
+                href: "https://github.com/subhendukundu/ntrace/projects/1",
             },
         ],
     },

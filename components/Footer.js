@@ -13,27 +13,17 @@ import { footerData } from "../config/constants";
 const socialLinks = [
   {
     icon: <Github width={30} height={30} fill="#F87E0F" />,
-    link: "https://github.com/subhendukundu/cool-bio-analytics",
+    link: "https://github.com/subhendukundu",
     key: "github",
   },
   {
-    icon: <Fb width={30} height={30} />,
-    link: "https://www.facebook.com/thecoolbio",
-    key: "fb",
-  },
-  {
-    icon: <Instagram width={30} height={30} />,
-    link: "https://www.instagram.com/thecoolbio",
-    key: "Insta",
-  },
-  {
     icon: <Linkedin />,
-    link: "https://www.linkedin.com/company/thecoolbio",
+    link: "https://www.linkedin.com/in/subhendukundu",
     key: "Linkedin",
   },
   {
     icon: <Twitter />,
-    link: "https://twitter.com/thecoolbio",
+    link: "https://twitter.com/ThisIsSubhendu",
     key: "Twitter",
   },
 ];
