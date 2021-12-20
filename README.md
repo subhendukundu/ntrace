@@ -24,7 +24,7 @@ An open-source analytics service that does not use cookies
 Ntrace analytics is an open-source analytics service. It does not use Cookies to track your users. Setup in 2 mins with our lightweight script which keeps your site speed fast. Track all of your website traffic from any device.
 
 ## 🚀 Demo
-See the live demo [here](https://analytics.cool.bio/share/1354cb95-33a4-4d3d-8dfc-eb2715d154fc)
+See the live demo [here](https://ntrace.io/share/1354cb95-33a4-4d3d-8dfc-eb2715d154fc)
 
 ## 🧐 Features
 - Privacy Friendy
@@ -39,8 +39,8 @@ See the live demo [here](https://analytics.cool.bio/share/1354cb95-33a4-4d3d-8df
 ## 🛠️ Installation
 **Step 1**: Clone and setup the project locally
 ```bash
-git clone https://github.com/subhendukundu/cool-bio-analytics.git
-cd cool-bio-analytics
+git clone https://github.com/subhendukundu/ntrace.git
+cd ntrace
 ```
 **Step 2**: Install the dependencies
 ```bash
@@ -56,7 +56,7 @@ npm run dev:ssr
 ```
 
 ## 📃 Documentation
-Please refer the [documentation](https://analytics.cool.bio/docs) for more details.
+Please refer the [documentation](https://ntrace.io/docs) for more details.
 
 ## 👩‍💻 Tech
 - [React](https://reactjs.org/)
@@ -114,4 +114,4 @@ Start tracking for free, then add a site plan to track more. Account plans unloc
 - [@subhendukundu](https://www.github.com/subhendukundu)
 
 ## 💼 License
-[MIT](https://github.com/subhendukundu/cool-bio-analytics/blob/main/LICENSE)
+[MIT](https://github.com/subhendukundu/ntrace/blob/main/LICENSE)
