@@ -74,7 +74,7 @@ function SettingsDetails({ projectId }) {
             {`
 <script
   async="true"
-  src="https://analytics.cool.bio/tracking.js"
+  src="https://ntrace.io/tracking.js"
   data-project-id="${projectId}"
 >
 </script>

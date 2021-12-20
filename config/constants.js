@@ -159,11 +159,6 @@ export const footerData = [
                 href: "/docs",
             },
             {
-                label: "Status",
-                key: "status",
-                href: "https://status.cool.bio",
-            },
-            {
                 label: "Blog",
                 key: "blog",
                 href: "#",

@@ -119,7 +119,7 @@ export default function Login(props) {
               </LoginLogo>
             </LogionLogoWrapper>
           </div>
-          <CopyRight>©2021 cool.bio Analytics. All rights reserved.</CopyRight>
+          <CopyRight>©2021 Ntrace Analytics. All rights reserved.</CopyRight>
         </LoginWrapper>
       </LoginContainer>
     </>

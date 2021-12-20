@@ -27,7 +27,7 @@ function Details() {
       >
         <H1>
           <div>Details,</div>
-          cool.bio Analytics
+          Ntrace Analytics
         </H1>
         <SettingsDetails projectId={name} />
       </x.div>

@@ -9,7 +9,7 @@
             const attr = (key) => script && script.getAttribute(key);
             const projectId = attr("data-project-id");
             const referrer = document.referrer;
-            const key = `cool.bio:analytics:${hostname}`;
+            const key = `ntrace.io:analytics:${hostname}`;
             const sessionId = sessionStorage.getItem(key);
             const response = await fetch(
                 "https://ntrace.io/api/v1/tracker",
